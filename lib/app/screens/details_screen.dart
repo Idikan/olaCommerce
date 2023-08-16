@@ -19,6 +19,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
       appBar: AppBar(
         title: const Text("Details"),
         centerTitle: true,
+        backgroundColor: Colors.red,
       ),
       body: Column(
         children: [
@@ -75,13 +76,14 @@ class _DetailsScreenState extends State<DetailsScreen> {
         ],
       ),
       bottomSheet: BottomAppBar(
-          //color: Colors.red,
+          color: Colors.red,
           elevation: 0,
           child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
+         //   padding: const EdgeInsets.symmetric(horizontal: 20),
             alignment: Alignment.center,
             width: double.infinity,
             height: myWidth /10,
+            /*
             decoration: const BoxDecoration(
               color: Colors.red,
               borderRadius: BorderRadius.only(
@@ -89,6 +91,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                 topRight: Radius.circular(15),
               )
             ),
+            */
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
