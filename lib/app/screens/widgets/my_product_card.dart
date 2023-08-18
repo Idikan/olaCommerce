@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ola_commerce/app/controllers/providers/favorite_provider.dart';
 import 'package:ola_commerce/app/models/my_product.dart';
 
 class MyProductCard extends StatefulWidget {
@@ -13,6 +14,7 @@ class _MyProductCardState extends State<MyProductCard> {
   @override
   Widget build(BuildContext context) {
     double myWidth = MediaQuery.sizeOf(context).width;
+    final provider = FavoriteProvider.of(context);
 
     return Container(
       width: myWidth * 0.5,
@@ -25,7 +27,12 @@ class _MyProductCardState extends State<MyProductCard> {
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
-            children: [Icon(Icons.favorite_outline, color: Colors.red,)],),
+            children: [
+              GestureDetector(
+                onTap: ()=> provider.toggleFavorite(widget.myProduct),
+                  child: Icon(
+                    provider.isExist(widget.myProduct) ? Icons.favorite :
+                    Icons.favorite_outline, color: Colors.red,))],),
       SizedBox(
         height: 3,),
           SizedBox(

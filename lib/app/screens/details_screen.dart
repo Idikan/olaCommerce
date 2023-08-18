@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:ola_commerce/app/controllers/providers/cart_provider.dart';
 import 'package:ola_commerce/app/models/my_product.dart';
+import 'package:ola_commerce/app/screens/cart_details_screen.dart';
 import 'package:ola_commerce/app/screens/widgets/available_size.dart';
+import 'package:provider/provider.dart';
 
 class DetailsScreen extends StatefulWidget {
   const DetailsScreen({Key? key, required this.myProduct}) : super(key: key);
@@ -14,6 +17,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
   @override
   Widget build(BuildContext context) {
     double myWidth = MediaQuery.sizeOf(context).height;
+    final provider = CartProvider.of(context);
 
     return Scaffold(
       appBar: AppBar(
@@ -101,7 +105,10 @@ class _DetailsScreenState extends State<DetailsScreen> {
                   fontWeight: FontWeight.bold,
                   color: Colors.white
                 ),),
-                ElevatedButton.icon(onPressed: (){}, icon: const Icon(Icons.send), label: const Text("Add to Cart"))
+                ElevatedButton.icon(onPressed: (){
+                  provider.toggleProduct(widget.myProduct);
+                  Navigator.push(context, MaterialPageRoute(builder: (_)=>const CartDetailsScreen()));
+                }, icon: const Icon(Icons.send), label: const Text("Add to Cart"))
               ],
             ),
           ),

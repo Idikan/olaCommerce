@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import 'app/controllers/providers/cart_provider.dart';
+import 'app/controllers/providers/favorite_provider.dart';
 import 'app/screens/home_screens.dart';
 
 void main() {
@@ -12,14 +15,20 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'ola Commerce',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_)=> FavoriteProvider()),
+        ChangeNotifierProvider(create: (_)=> CartProvider()),
+      ],
+      child: MaterialApp(
+          title: 'ola Commerce',
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+            useMaterial3: true,
+          ),
+          home: const MyHomePage(),
+        ),
     );
   }
 }
